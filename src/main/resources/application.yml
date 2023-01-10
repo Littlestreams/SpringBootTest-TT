@@ -1,0 +1,22 @@
+server:
+  port: 5566
+  servlet:
+    context-path: /
+    encoding:
+      charset: utf-8
+
+
+spring:
+  profiles:
+    active: test
+  mvc:
+    view:
+      prefix: /WEB-INF/jsp/
+      suffix: .jsp
+
+  servlet:
+     multipart:
+       #设置单个文件大小
+       max-file-size: 50MB
+        #设置单次请求文件的总大小
+       max-request-size: 50MB
