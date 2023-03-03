@@ -50,13 +50,13 @@
     <logger name="com.no4.virpay" level="DEBUG"/>
 
     <springProfile name="dev">
-        <root level="DEBUG">
+        <root level="INFO">
             <appender-ref ref="FILE"/>
             <appender-ref ref="STDOUT"/>
         </root>
     </springProfile>
 	<springProfile name="test">
-        <root level="DEBUG">
+        <root level="INFO">
             <appender-ref ref="FILE"/>
             <appender-ref ref="STDOUT"/>
         </root>

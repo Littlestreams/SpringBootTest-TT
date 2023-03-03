@@ -32,4 +32,9 @@ public class UserServiceImpl implements UserService {
     public void insertUser(User user) {
         int i = userMapper.insertSelective(user);
     }
+
+    @Override
+    public User selectByPrimaryKey(String primaryKey) {
+        return userMapper.selectByPrimaryKey(primaryKey);
+    }
 }

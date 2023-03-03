@@ -25,4 +25,9 @@ public interface UserService {
      * @return
      */
     void insertUser(User user);
+
+    /**
+     *根据主键获取信息
+     */
+    User selectByPrimaryKey(String primaryKey);
 }

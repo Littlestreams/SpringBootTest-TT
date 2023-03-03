@@ -1,5 +1,6 @@
 package com.no4.virpay.dao.model;
 
+import java.math.BigDecimal;
 import java.util.Date;
 
 public class User {
@@ -14,6 +15,10 @@ public class User {
     private String email;
 
     private Date creattime;
+
+    private BigDecimal accountamt;
+
+    private Date motifytime;
 
     public String getId() {
         return id;
@@ -63,6 +68,22 @@ public class User {
         this.creattime = creattime;
     }
 
+    public BigDecimal getAccountamt() {
+        return accountamt;
+    }
+
+    public void setAccountamt(BigDecimal accountamt) {
+        this.accountamt = accountamt;
+    }
+
+    public Date getMotifytime() {
+        return motifytime;
+    }
+
+    public void setMotifytime(Date motifytime) {
+        this.motifytime = motifytime;
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
@@ -75,6 +96,8 @@ public class User {
         sb.append(", address=").append(address);
         sb.append(", email=").append(email);
         sb.append(", creattime=").append(creattime);
+        sb.append(", accountamt=").append(accountamt);
+        sb.append(", motifytime=").append(motifytime);
         sb.append("]");
         return sb.toString();
     }

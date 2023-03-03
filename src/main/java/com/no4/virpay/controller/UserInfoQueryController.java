@@ -1,48 +1,1 @@
-package com.no4.virpay.controller;
-
-import com.no4.virpay.base.ResultVo;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-/**
- * @author lvqi
- * @Title: 用户信息查询
- * @Package
- * @Description:
- * @date 2023/1/3 15:14
- */
-@RestController
-@RequestMapping(value = "/ui")
-public class UserInfoQueryController {
-    private Logger logger = LoggerFactory.getLogger(UserInfoQueryController.class);
-    @RequestMapping(value = "/queryUserInfo")
-    @ResponseBody
-    public ResultVo queryUserInfo(@RequestBody Map<String,Object> respMap){
-        logger.info("query userInfo ....start:::respMap:"+respMap.toString());
-        List<Map<String,String>> listMap= (List<Map<String, String>>) respMap.get("Books");
-        List<Map<String,String>> result= new ArrayList();
-        //解析数据
-        for (int i = 0; i <listMap.size() ; i++) {
-            Map<String, String> date =new HashMap<>(16);
-            for (String key :listMap.get(i).keySet()){
-                logger.info("key:"+key+",value:"+listMap.get(i).get(key));
-                date.put(key,listMap.get(i).get(key));
-                logger.info(result.toString());
-            }
-            result.add(date);
-        }
-        //自定义编码
-        String code="custom9527";
-        String message= (String) respMap.get("Wisdom");
-        return ResultVo.success(code,message,result);
-    }
-}
+package com.no4.virpay.controller;import com.no4.virpay.base.ResultVo;import com.no4.virpay.dao.model.User;import com.no4.virpay.enums.UserResultVoCode;import com.no4.virpay.service.UserService;import com.no4.virpay.utils.Arith;import org.slf4j.Logger;import org.slf4j.LoggerFactory;import org.springframework.http.HttpRequest;import org.springframework.web.bind.annotation.*;import javax.annotation.Resource;import javax.servlet.http.HttpServletRequest;import javax.servlet.http.HttpServletResponse;import javax.servlet.http.HttpSession;import java.math.BigDecimal;import java.util.ArrayList;import java.util.HashMap;import java.util.List;import java.util.Map;/** * @author lvqi * @Title: 用户信息查询 * @Package * @Description: * @date 2023/1/3 15:14 */@RestController@RequestMapping(value = "/ui")public class UserInfoQueryController {    private Logger logger = LoggerFactory.getLogger(UserInfoQueryController.class);    @Resource    private UserService userService;    /**     * 统一返回值测试案例     * @param respMap     * @return     */    @RequestMapping(value = "/queryUserInfo")    @ResponseBody    public ResultVo queryUserInfo(@RequestBody Map<String,Object> respMap){        logger.info("query userInfo ....start:::respMap:"+respMap.toString());        List<Map<String,String>> listMap= (List<Map<String, String>>) respMap.get("Books");        List<Map<String,String>> result= new ArrayList();        //解析数据        for (int i = 0; i <listMap.size() ; i++) {            Map<String, String> date =new HashMap<>(16);            for (String key :listMap.get(i).keySet()){                logger.info("key:"+key+",value:"+listMap.get(i).get(key));                date.put(key,listMap.get(i).get(key));                logger.info(result.toString());            }            result.add(date);        }        //自定义编码        String code="custom9527";        String message= (String) respMap.get("Wisdom");        return ResultVo.success(code,message,result);    }    /**     * 查询用户信息     * @return     */    @RequestMapping(value = "/queryUsers")    @ResponseBody    public ResultVo queryUserInfo(HttpServletRequest request, HttpServletResponse response){        logger.info("queryUserInfo....start");        HttpSession session = request.getSession();        String userId = session.getAttribute("userId").toString();        logger.info("userId:"+userId);        User user = userService.selectByPrimaryKey(userId);        if(user ==null){            //自定义编码            return ResultVo.failed(UserResultVoCode.VERIFICATION_01.getCode(),UserResultVoCode.VERIFICATION_01.getMsg(),userId);        }        return  ResultVo.success(user);    }    /**     * 查询账户信息     * @return     */    @RequestMapping(value = "/queryAccount")    @ResponseBody    public ResultVo queryUserAccount(@RequestParam String Id,@RequestParam Double outMoney){        logger.info("query Account ....start:::Id:"+Id);        User user = userService.selectByPrimaryKey(Id);        logger.info("Account amt:"+user.getAccountamt());        double accountAmt = user.getAccountamt().doubleValue();        //比较退款和当前账户的余额        boolean i = Arith.compareTo(accountAmt, outMoney);        if(!i){            //自定义编码            String code="F202";            String message= "当前"+Id+"账户余额不足";            return ResultVo.failed(code,message,accountAmt);        }        return  null;    }}

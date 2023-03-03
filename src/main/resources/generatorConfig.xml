@@ -4,7 +4,6 @@
     <context id="context1" defaultModelType="flat" targetRuntime="MyBatis3">
         <!--生成toString方法-->
         <plugin type="org.mybatis.generator.plugins.ToStringPlugin" />
-
         <!-- 不生成注释 -->
         <commentGenerator>
             <property name="suppressAllComments" value="true" />

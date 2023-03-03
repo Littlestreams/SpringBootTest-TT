@@ -20,3 +20,19 @@ spring:
        max-file-size: 50MB
         #设置单次请求文件的总大小
        max-request-size: 50MB
+  #session配置
+  session:
+    timeout: 86400 # 设置session失效时间
+    store-type: redis # 修改spring-session存储配置，默认存储到服务器内存中，现在设置存到redis中（关键）
+  #Redis配置
+  redis:
+    host: 127.0.0.1
+    port: 6379
+    jedis:
+      pool:
+        max-active: 8
+        max-wait: -1ms
+        max-idle: 500
+        min-idle: 0
+    lettuce:
+      shutdown-timeout: 0ms

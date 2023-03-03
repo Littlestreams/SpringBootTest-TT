@@ -1,5 +1,6 @@
 package com.no4.virpay.dao.model;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -502,6 +503,126 @@ public class UserExample {
 
         public Criteria andCreattimeNotBetween(Date value1, Date value2) {
             addCriterion("creatTime not between", value1, value2, "creattime");
+            return (Criteria) this;
+        }
+
+        public Criteria andAccountamtIsNull() {
+            addCriterion("accountAmt is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andAccountamtIsNotNull() {
+            addCriterion("accountAmt is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andAccountamtEqualTo(BigDecimal value) {
+            addCriterion("accountAmt =", value, "accountamt");
+            return (Criteria) this;
+        }
+
+        public Criteria andAccountamtNotEqualTo(BigDecimal value) {
+            addCriterion("accountAmt <>", value, "accountamt");
+            return (Criteria) this;
+        }
+
+        public Criteria andAccountamtGreaterThan(BigDecimal value) {
+            addCriterion("accountAmt >", value, "accountamt");
+            return (Criteria) this;
+        }
+
+        public Criteria andAccountamtGreaterThanOrEqualTo(BigDecimal value) {
+            addCriterion("accountAmt >=", value, "accountamt");
+            return (Criteria) this;
+        }
+
+        public Criteria andAccountamtLessThan(BigDecimal value) {
+            addCriterion("accountAmt <", value, "accountamt");
+            return (Criteria) this;
+        }
+
+        public Criteria andAccountamtLessThanOrEqualTo(BigDecimal value) {
+            addCriterion("accountAmt <=", value, "accountamt");
+            return (Criteria) this;
+        }
+
+        public Criteria andAccountamtIn(List<BigDecimal> values) {
+            addCriterion("accountAmt in", values, "accountamt");
+            return (Criteria) this;
+        }
+
+        public Criteria andAccountamtNotIn(List<BigDecimal> values) {
+            addCriterion("accountAmt not in", values, "accountamt");
+            return (Criteria) this;
+        }
+
+        public Criteria andAccountamtBetween(BigDecimal value1, BigDecimal value2) {
+            addCriterion("accountAmt between", value1, value2, "accountamt");
+            return (Criteria) this;
+        }
+
+        public Criteria andAccountamtNotBetween(BigDecimal value1, BigDecimal value2) {
+            addCriterion("accountAmt not between", value1, value2, "accountamt");
+            return (Criteria) this;
+        }
+
+        public Criteria andMotifytimeIsNull() {
+            addCriterion("motifyTime is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andMotifytimeIsNotNull() {
+            addCriterion("motifyTime is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andMotifytimeEqualTo(Date value) {
+            addCriterion("motifyTime =", value, "motifytime");
+            return (Criteria) this;
+        }
+
+        public Criteria andMotifytimeNotEqualTo(Date value) {
+            addCriterion("motifyTime <>", value, "motifytime");
+            return (Criteria) this;
+        }
+
+        public Criteria andMotifytimeGreaterThan(Date value) {
+            addCriterion("motifyTime >", value, "motifytime");
+            return (Criteria) this;
+        }
+
+        public Criteria andMotifytimeGreaterThanOrEqualTo(Date value) {
+            addCriterion("motifyTime >=", value, "motifytime");
+            return (Criteria) this;
+        }
+
+        public Criteria andMotifytimeLessThan(Date value) {
+            addCriterion("motifyTime <", value, "motifytime");
+            return (Criteria) this;
+        }
+
+        public Criteria andMotifytimeLessThanOrEqualTo(Date value) {
+            addCriterion("motifyTime <=", value, "motifytime");
+            return (Criteria) this;
+        }
+
+        public Criteria andMotifytimeIn(List<Date> values) {
+            addCriterion("motifyTime in", values, "motifytime");
+            return (Criteria) this;
+        }
+
+        public Criteria andMotifytimeNotIn(List<Date> values) {
+            addCriterion("motifyTime not in", values, "motifytime");
+            return (Criteria) this;
+        }
+
+        public Criteria andMotifytimeBetween(Date value1, Date value2) {
+            addCriterion("motifyTime between", value1, value2, "motifytime");
+            return (Criteria) this;
+        }
+
+        public Criteria andMotifytimeNotBetween(Date value1, Date value2) {
+            addCriterion("motifyTime not between", value1, value2, "motifytime");
             return (Criteria) this;
         }
     }
