@@ -1,5 +1,6 @@
 package com.no4.virpay;
 
+import com.no4.virpay.dao.model.User;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
 
@@ -18,6 +19,5 @@ public class Test {
     public void testJson() {
         System.out.println("hhh");
         System.out.println(port);
-
     }
 }
